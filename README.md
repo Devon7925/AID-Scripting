@@ -28,7 +28,7 @@ Module Example:
 	],
 	onEnd: true, //Allows encouraging module to be activated later, or earlier if false, is ignored if any modules in order exist
 	init: function(){
-		state.example = {} //always use substate variable to prevent conflicts
+		state.example.something = "something" //always use substate variable to prevent conflicts
 	}, //Called on first script activation
 	consume: function(input){}, //Can return true, if it does input and output will be made empty and input scripts won't run
 	input: function(input){}, //Processes input
