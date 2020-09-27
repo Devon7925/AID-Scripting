@@ -17,7 +17,7 @@ Module Example:
 		"Example 2",
 		{
 			name: "Example 3",
-			link: "github.com/example/example3" //Allow linking to module in error
+			url: "github.com/example/example3" //Allow linking to module in error
 		}
 	],
 	order: [ //Allows enforcing a order relative to other modules note these modules don't have to be requirements
@@ -33,7 +33,7 @@ Module Example:
 	consume: function(input){}, //Can return true, if it does input and output will be made empty and input scripts won't run
 	input: function(input){}, //Processes input
 	output: function(output){}, //Processes output
-	context: function(context){} //Processes context
+	context: function(context){}, //Processes context
 	process: function(type){} //Runs on all script activations. type can be "input", "output", or "context"
 }
 ```
