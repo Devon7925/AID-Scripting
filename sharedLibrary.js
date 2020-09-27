@@ -13,6 +13,8 @@ function error(errorText){
 }
 
 state.message = ""
+state.memory.context = memory
+state.memory.frontMemory = ""
 
 // initialize state.module_name for you
 for(module of modules) if(state[module.name] === undefined) state[module.name] = {}
