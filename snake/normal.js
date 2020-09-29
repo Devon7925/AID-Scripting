@@ -13,7 +13,7 @@
       state.snake.snakeLength = 1
       state.snake.board[state.snake.snakeY][state.snake.snakeX] = state.snake.snakeLength
       functions["snake"].generateApple()
-      state.snake.lastTime = new Date().getTime()
+      state.snake.lastTime = Math.trunc(new Date().getTime()/settings.snake.msPerTurn)
       state.snake.direction = 1
     },
     functions: {
@@ -64,18 +64,20 @@
       }
     },
     consume: function(input){
-      for(let t = 0; t < (new Date().getTime()-state.snake.lastTime)/settings.snake.msPerTurn; t++) if(functions["snake"].stepSnake() || state.snake.death){
-        state.message = "You failed!"
-        state.snake.death = true
-        return true
-      }
+      let time = Math.trunc(new Date().getTime()/settings.snake.msPerTurn)
+      if(time > state.snake.lastTime)
+        for(let t = 0; t < time-state.snake.lastTime; t++) if(functions["snake"].stepSnake() || state.snake.death){
+          state.message = "You failed!"
+          state.snake.death = true
+          return true
+        }
       input = input.replace(/[^wasd]/g, "")
       input = input.charAt(input.length-1)
       if(input === "w") state.snake.direction = 0
       if(input === "d") state.snake.direction = 1
       if(input === "s") state.snake.direction = 2
       if(input === "a") state.snake.direction = 3
-      state.snake.lastTime = new Date().getTime()
+      state.snake.lastTime = time
       state.modules.forceOutput = functions["snake"].render()
       state.message = state.modules.forceOutput
       return true;
