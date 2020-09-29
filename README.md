@@ -30,6 +30,9 @@ Module Example:
 	init: function(){
 		state.example.something = "something" //always use substate variable to prevent conflicts
 	}, //Called on first script activation
+	functions: [//provides functions that can be accessed for utility
+		exFunc: function(){}
+	],
 	consume: function(input){}, //Can return true, if it does input and output will be made empty and input scripts won't run. If it returns false, it shouldn't do anything
 	input: function(input){}, //Processes input
 	output: function(output){}, //Processes output

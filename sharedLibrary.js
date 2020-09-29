@@ -59,6 +59,11 @@ for(module of modules) {
   }
 }
 
+let functions = []
+for(module of modules) {
+  if(module.functions) functions[module.name] = module.functions
+}
+
 if(!state.modules.initialized){
   for(module of modules) if(module.init) module.init()
 }
