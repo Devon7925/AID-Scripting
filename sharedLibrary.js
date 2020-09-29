@@ -49,8 +49,6 @@ if(!state.modules.initialized){
       }
     }
   }
-  // init
-  for(module of modules) if(module.init) module.init()
 }
 
 for(module of modules) {
@@ -59,4 +57,8 @@ for(module of modules) {
       settings[module.name][setting.name] = setting.default
     }
   }
+}
+
+if(!state.modules.initialized){
+  for(module of modules) if(module.init) module.init()
 }
