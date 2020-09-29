@@ -18,6 +18,7 @@ state.memory.frontMemory = ""
 
 // initialize state.module_name for you
 for(module of modules) if(state[module.name] === undefined) state[module.name] = {}
+for(module of modules) if(settings[module.name] === undefined && module.settings) settings[module.name] = []
 
 if(!state.modules.initialized){
   for(module of modules) {
@@ -40,7 +41,22 @@ if(!state.modules.initialized){
         error(errorText)
       }
     }
+    if(module.settings) for(setting of module.settings) {
+      if(settings[module.name][setting.name] === undefined){
+        if(setting.default === undefined){
+          error('Setting ' + setting.name + ' is required because it does not have a default value, but it is not included')
+        }
+      }
+    }
   }
   // init
   for(module of modules) if(module.init) module.init()
+}
+
+for(module of modules) {
+  if(module.settings) for(setting of module.settings) {
+    if(settings[module.name][setting.name] === undefined){
+      settings[module.name][setting.name] = setting.default
+    }
+  }
 }

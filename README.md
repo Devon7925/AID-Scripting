@@ -2,7 +2,7 @@
 ```js
 let settings = {//Settings are for script configuration by script users ex. setting prefix for commands
 	example: {//use own area for settings to prevent incomptibility
-		
+		"required":6
 	}
 }
 ```
@@ -34,6 +34,7 @@ Module Example:
 	input: function(input){}, //Processes input
 	output: function(output){}, //Processes output
 	context: function(context){}, //Processes context
-	process: function(type){} //Runs on all script activations. type can be "input", "output", or "context"
+	process: function(type){}, //Runs on all script activations. type can be "input", "output", or "context"
+	settings: [{name:"ex", default:5},{name:"required"}] //settings without a default are required and will throw an error if not included
 }
 ```
