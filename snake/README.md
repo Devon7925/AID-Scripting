@@ -1,0 +1,1 @@
+A module that allows playing snake using wasd + enter
