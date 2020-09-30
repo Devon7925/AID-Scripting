@@ -3,7 +3,7 @@ let settings = {
 }
 
 let modules = [
-  {name:"modules",init:function(){state.modules.initialized = true;}},
+  {name:"modules",init:function(){state.modules.initialized = true; state.modules.contextIsContinue = true}},
 ]
 
 function error(errorText){
@@ -11,10 +11,6 @@ function error(errorText){
   console.log(errorText)
   state.modules.errored = true;
 }
-
-state.message = ""
-state.memory.context = memory
-state.memory.frontMemory = ""
 
 // initialize state.module_name for you
 for(module of modules) if(state[module.name] === undefined) state[module.name] = {}
@@ -67,3 +63,7 @@ for(module of modules) {
 if(!state.modules.initialized){
   for(module of modules) if(module.init) module.init()
 }
+
+state.message = ""
+state.memory.context = memory
+state.memory.frontMemory = ""
