@@ -12,14 +12,17 @@ Modules should appear inside the square brackets ([]) after `let modules = `
 Module Example:
 ```js
 {
-	name: "Example", // Only required value
+	name: "Example", // Only required value`
+	tags: ["example"]
 	requirements: [ //Will create error in state.message and log if required modules are not included
 		"Example 2",
 		{
 			name: "Example 3",
 			url: "github.com/example/example3" //Allow linking to module in error
-		}
+		},
+		"#ExampleTag"
 	],
+	incompatibles: ["example3","#example"],
 	order: [ //Allows enforcing a order relative to other modules note these modules don't have to be requirements
 		{
 			name: "Example 3",
@@ -38,6 +41,10 @@ Module Example:
 	output: function(output){}, //Processes output
 	context: function(context){}, //Processes context
 	process: function(type){}, //Runs on all script activations. type can be "input", "output", or "context"
-	settings: [{name:"ex", default:5},{name:"required"}] //settings without a default are required and will throw an error if not included
+	settings: [{name:"ex", default:5},{name:"required"}], //settings without a default are required and will throw an error if not included
+	info: {
+		code: "https://github.com/Devon7925/AID-Scripting",
+		description: "An example script to show off the capabilities of modules" // doesn't do anything on its own, but can be used by other scripts
+	}
 }
 ```
