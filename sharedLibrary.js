@@ -6,7 +6,7 @@ let modules = [
   {name:"modules",init:function(){state.modules.initialized = true; state.modules.contextIsContinue = true}},
 ]
 
-const version = "0.1.0"
+const version = "0.1.1"
 const breakVersion = "0.1.0"
 
 function versionGreater(version1, version2){
@@ -28,8 +28,8 @@ function error(errorText){
 function checkRequirements(module){
   if(module.requirements) for(requirement of module.requirements) {
     let requirementFufilled = false
-    if((requirement.name && requirement.name.startsWith("#")) || requirement.startsWith("#")){
-      let tag = (requirement.name?requirement.name:requirement).substring(1)
+    if(typeof requirement === "string" && requirement.startsWith("#")){
+      let tag = requirement.substring(1)
       for(module2 of modules) if(module2 !== module && module2.tags) for(tag2 of module2.tags){
         if(tag === tag2) requirementFufilled = true
       }
