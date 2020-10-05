@@ -45,6 +45,8 @@ Module Example:
 	info: {
 		code: "https://github.com/Devon7925/AID-Scripting",
 		description: "An example script to show off the capabilities of modules" // doesn't do anything on its own, but can be used by other scripts
-	}
+	},
+	version: "0.1.0", //the highest version the module is known to work on
+	minVersion: "0.1.0" //the minimum version the module was tested on
 }
 ```

@@ -6,6 +6,19 @@ let modules = [
   {name:"modules",init:function(){state.modules.initialized = true; state.modules.contextIsContinue = true}},
 ]
 
+const version = "0.1.0"
+const breakVersion = "0.1.0"
+
+function versionGreater(version1, version2){
+  const split1 = version1.split(".")
+  const split2 = version2.split(".")
+  for(let i = 0; i <= 3; i++){
+    if(Number(split1[i])>Number(split2[i])) return true
+    if(Number(split1[i])<Number(split2[i])) return false
+  }
+  return false
+}
+
 function error(errorText){
   state.message += '\n' + errorText;
   console.log(errorText)
@@ -110,7 +123,10 @@ for(module of modules) if(state[module.name] === undefined) state[module.name] =
 for(module of modules) if(settings[module.name] === undefined && module.settings) settings[module.name] = []
 
 if(!state.modules.initialized){
-  const keyList = ["name","tags","requirements","incompatibles","order","onEnd","init","functions","consume","input","output","context","process","settings","info"]
+  const keyList = ["name","tags","requirements","incompatibles","order","onEnd","init","functions","consume","input","output","context","process","settings","info","version","minVersion"]
+  for(module of modules) if(module.version && versionGreater(breakVersion, module.version)) error("There has been a breaking change since module " + module.name + " was developed")
+  for(module of modules) if(module.minVersion && versionGreater(module.minVersion, version)) error("Your module version is too out of date for " + module.name + ", please update")
+  
   for(module of modules) {
     for(module2 of modules) if(module.name === module2.name && module !== module2){
       error('Two modules cannot have the same name but there are multiple modules with the name "' + module.name + '"')
