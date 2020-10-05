@@ -1,18 +1,21 @@
 const modifier = (text) => {
-  for(module of modules) if(module.process) module.process("input")
+  for(i of state.modules.order) if(modules[i].process) modules[i].process("input")
   
   state.modules.forceOutput = ""
-  for(module of modules) if(module.consume && module.consume(text)) {
-    state.modules.contextIsContinue = true
-    if(state.modules.addToOut){
-      state.modules.forceOutput = state.modules.addToOut + state.modules.forceOutput;
-      delete state.modules.addToOut
+  for(i of state.modules.order) {
+    let module = modules[i]
+    if(module.consume && module.consume(text)) {
+      state.modules.contextIsContinue = true
+      if(state.modules.addToOut){
+        state.modules.forceOutput = state.modules.addToOut + state.modules.forceOutput;
+        delete state.modules.addToOut
+      }
+      return {text: state.modules.forceOutput, stop: true}
     }
-    return {text: state.modules.forceOutput, stop: true}
   }
   
   let modifiedText = text
-  for(module of modules) if(module.input) modifiedText = module.input(modifiedText)
+  for(i of state.modules.order) if(modules[i].input) modifiedText = modules[i].input(modifiedText)
   state.modules.contextIsContinue = false
   if(state.modules.addToOut){
     modifiedText = state.modules.addToOut + modifiedText;

@@ -56,12 +56,61 @@ function checkIncompatibilities(module){
   }
 }
 
-// initialize state.module_name for you
+function uniqBy(a, key) {
+    var seen = {};
+    return a.filter(function(item) {
+        var k = key(item);
+        return seen.hasOwnProperty(k) ? false : (seen[k] = true);
+    })
+}
+
+function calculateOrder(){
+  for(module of modules) if(module.order) for(orderElem of module.order){
+      let inScript = false
+      for(module2 of modules) if(orderElem.name === module2.name) inScript = true
+      if(!inScript) module.order.splice(module.order.indexOf(orderElem), 1)
+    }
+    
+  for(module of modules) if(module.order) for(orderElem of module.order){
+      if(orderElem.location === "after"){
+        for(module2 of modules) if(orderElem.name === module2.name) {
+          if(!module2.order) module2.order = []
+          module2.order.push({name:module.name,location:"before"})
+        }
+        module.order.splice(module.order.indexOf(orderElem), 1)
+      }
+    }
+  for(module of modules) if(module.order) module.order = uniqBy(module.order, JSON.stringify)
+  for(module of modules) module.level = 0
+  
+  let settled = true
+  let maxLevel = 0;
+  do {
+    settled = true
+    for(module of modules) if(module.order) for(orderElem of module.order) for(module2 of modules) if(module2.name === orderElem.name){
+      if(module2.level >= module.level){
+        module.level = module2.level + 1
+        if(module.level > maxLevel) maxLevel = module.level
+        settled = false
+      }
+    }
+    
+  }while(!settled)
+  
+  state.modules.order = []
+  for(let level = 0; level <= maxLevel; level++){
+    for(module of modules) if(module.level == level && module.onEnd === false) state.modules.order.push(modules.indexOf(module))
+    for(module of modules) if(module.level == level && module.onEnd === undefined) state.modules.order.push(modules.indexOf(module))
+    for(module of modules) if(module.level == level && module.onEnd === true) state.modules.order.push(modules.indexOf(module))
+  }
+}
+
+// initialize state.module_name and settings.module_name for you
 for(module of modules) if(state[module.name] === undefined) state[module.name] = {}
 for(module of modules) if(settings[module.name] === undefined && module.settings) settings[module.name] = []
 
 if(!state.modules.initialized){
-  const keyList = ["name","tags","requirements","incompatibles","order","onEnd","init","functions","consume","input","output","context","process","settings","info","metadatax"]
+  const keyList = ["name","tags","requirements","incompatibles","order","onEnd","init","functions","consume","input","output","context","process","settings","info"]
   for(module of modules) {
     for(module2 of modules) if(module.name === module2.name && module !== module2){
       error('Two modules cannot have the same name but there are multiple modules with the name "' + module.name + '"')
@@ -80,6 +129,7 @@ if(!state.modules.initialized){
       }
     }
   }
+  calculateOrder()
 }
 
 for(module of modules) {
@@ -96,7 +146,7 @@ for(module of modules) {
 }
 
 if(!state.modules.initialized){
-  for(module of modules) if(module.init) module.init()
+  for(i of state.modules.order) if(modules[i].init) modules[i].init()
 }
 
 state.message = ""

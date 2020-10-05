@@ -1,7 +1,7 @@
 const modifier = (text) => {
-  for(module of modules) if(module.process) module.process("output")
+  for(i of state.modules.order) if(modules[i].process) modules[i].process("output")
   let modifiedText = text
-  for(module of modules) if(module.output) modifiedText = module.output(modifiedText)
+  for(i of state.modules.order) if(modules[i].output) modifiedText = modules[i].output(modifiedText)
   state.modules.contextIsContinue = true
   if(state.modules.addToOut){
     modifiedText = state.modules.addToOut + modifiedText;
