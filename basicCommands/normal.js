@@ -1,6 +1,6 @@
 {
     name:"basicCommands",
-    requirements:[{name:"commands",url:"https://github.com/Devon7925/AID-Scripting/commands"}],
+    requirements:[{name:"commands",url:"https://github.com/Devon7925/AID-Scripting/tree/master/commands"}],
     order:[{name:"commands",location:"before"}],
     init:function(){
       state.commands.commandList["listModules"] = {
@@ -45,7 +45,7 @@
     },
     info:{
       description: "A module that adds commands to list the commands and list the modules",
-      code: "https://github.com/Devon7925/AID-Scripting/basicCommands"
+      code: "https://github.com/Devon7925/AID-Scripting/tree/master/basicCommands"
     },
     version: "0.1.1",
     minVersion: "0.1.1"

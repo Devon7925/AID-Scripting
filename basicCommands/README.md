@@ -1,1 +1,1 @@
-A module that uses https://github.com/Devon7925/AID-Scripting/commands to add a command that lists modules and a command that lists commands
+A module that uses https://github.com/Devon7925/AID-Scripting/tree/master/commands to add a command that lists modules and a command that lists commands

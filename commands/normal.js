@@ -26,7 +26,7 @@
     },
     settings:[{name:"prefix"}],
     info: {
-  		code: "https://github.com/Devon7925/AID-Scripting/commands",
+  		code: "https://github.com/Devon7925/AID-Scripting/tree/master/commands",
   		description: "An module that allows other modules to add commands"
 	  },
     version:"0.1.1",

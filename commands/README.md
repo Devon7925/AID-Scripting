@@ -1,1 +1,1 @@
-A module that allows other modules to add commands. For an example see https://github.com/Devon7925/AID-Scripting/basicCommands
+A module that allows other modules to add commands. For an example see https://github.com/Devon7925/AID-Scripting/tree/master/basicCommands
