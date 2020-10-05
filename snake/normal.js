@@ -1,5 +1,7 @@
 {
   name: "snake",
+  tags: ["game"],
+  incompatibles: ["#game"],
   init: function(){
     state.snake.board = []
     for(let y = 0; y < settings.snake.size; y++){
@@ -84,5 +86,11 @@
     state.message += "Score: "+state.snake.snakeLength
     return true;
   },
-  settings: [{name:"size",default:10},{name:"msPerTurn",default:2000}]
+  settings: [{name:"size",default:10},{name:"msPerTurn",default:2000}],
+	info: {
+		code: "https://github.com/Devon7925/AID-Scripting/snake",
+		description: "A script that turns AI dungeon into snake"
+	},
+	version: "0.1.0",
+	minVersion: "0.1.0"
 },
