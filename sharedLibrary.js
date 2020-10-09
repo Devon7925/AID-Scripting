@@ -168,3 +168,4 @@ if(!state.modules.initialized){
 state.message = ""
 state.memory.context = memory
 state.memory.frontMemory = ""
+state.memory.authorsNote = ""
