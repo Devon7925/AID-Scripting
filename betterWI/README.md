@@ -4,22 +4,21 @@ A system that allows better and more complex WI
 
 Addes if-this-then-that logic
 
+0 means still unimplemented
+
 Commands:
 - an
 - fm
 - memS
 - memE
-- Sentence
-- Entry
+- Sentence 0
+- Entry 0
 
 Conditions:
 - p
-- e
-- c
-- s
-
-Ops:
-- &
-- |
-- !
-Also supports parenthesis
+- e 0
+- c 0
+- s 0
+- and
+- or
+- not
