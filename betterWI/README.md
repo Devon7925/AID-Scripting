@@ -16,7 +16,7 @@ Commands:
 
 Conditions:
 - p
-- e 0
+- e
 - c 0
 - s 0
 - and
