@@ -6,7 +6,7 @@ let modules = [
   {name:"modules",init:function(){state.modules.initialized = true; state.modules.contextIsContinue = true}},
 ]
 
-const version = "0.1.3"
+const version = "0.1.4"
 const breakVersion = "0.1.0"
 
 function versionGreater(version1, version2){
