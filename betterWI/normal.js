@@ -36,7 +36,15 @@
         return Math.random() < parseFloat(args[0])
       },
       e:(context,args)=>{
-        return context.slice(parseInt(args[1])).flatMap(elem => elem["text"]).join().includes(args[0])
+        return context.slice(-parseInt(args[1])).flatMap(elem => elem["text"]).join().includes(args[0])
+      },
+      c:(context,args)=>{
+        let str =  context.flatMap(elem => elem["text"]).join()
+        str = str.substring(str.length - parseInt(args[1]), str.length)
+        return str.includes(args[0])
+      },
+      s:(context,args)=>{
+        return context.flatMap(elem => elem["text"]).join().split(/[?.!]/g).slice(-parseInt(args[1])).join().includes(args[0])
       }
     }
   },

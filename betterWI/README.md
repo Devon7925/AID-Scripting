@@ -17,8 +17,8 @@ Commands:
 Conditions:
 - p
 - e
-- c 0
-- s 0
+- c
+- s
 - and
 - or
 - not
