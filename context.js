@@ -1,4 +1,6 @@
 const modifier = (text) => {
+  if(state.modules.queryAI) for(module of modules) if(module.name === state.modules.queryModule && module.queryContext) return module.queryContext(text)
+  
   if(state.modules.contextIsContinue){
     if(state.modules.addToOut === undefined) state.modules.addToOut = ""
     

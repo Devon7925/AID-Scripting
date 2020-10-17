@@ -37,9 +37,11 @@ Module Example:
 		exFunc: function(){}
 	},
 	consume: function(input){}, //Can return true, if it does input and output will be made empty and input scripts won't run. If it returns false, it shouldn't do anything
-	input: function(input){}, //Processes input
-	output: function(output){}, //Processes output
-	context: function(context){}, //Processes context
+	queryContext: function(context){return context}, //Allows processing the context when doing an AI query
+	getQuery: function(output){}, //Get the result from the AI
+	input: function(input){return input}, //Processes input
+	output: function(output){return output}, //Processes output
+	context: function(context){return context}, //Processes context
 	process: function(type){}, //Runs on all script activations. type can be "input", "output", or "context"
 	settings: [{name:"ex", default:5},{name:"required"}], //settings without a default are required and will throw an error if not included
 	info: {
@@ -50,3 +52,7 @@ Module Example:
 	minVersion: "0.1.0" //the minimum version the module was tested on
 }
 ```
+
+# Extra Notes
+* You can use `state.modules.forceOutput` in consume to force a string to be added to context
+* You can use `state.modules.queryAI` in consume to get an output from the AI with the context from `queryContext`. It will be sent to `getQuery`.

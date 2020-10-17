@@ -2,6 +2,7 @@ const modifier = (text) => {
   for(i of state.modules.order) if(modules[i].process) modules[i].process("input")
   
   state.modules.forceOutput = ""
+  state.modules.queryAI = false
   for(i of state.modules.order) {
     let module = modules[i]
     if(module.consume && module.consume(text)) {
@@ -10,7 +11,8 @@ const modifier = (text) => {
         state.modules.forceOutput = state.modules.addToOut + state.modules.forceOutput;
         delete state.modules.addToOut
       }
-      return {text: state.modules.forceOutput, stop: true}
+      if(state.modules.queryAI) state.modules.queryModule = module.name
+      return {text: state.modules.forceOutput, stop: !state.modules.queryAI}
     }
   }
   
