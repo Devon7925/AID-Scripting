@@ -1,6 +1,9 @@
 const modifier = (text) => {
-  if(state.modules.queryAI) for(module of modules) if(module.name === state.modules.queryModule && module.getQuery) return module.getQuery(text)
-  
+  if(state.modules.queryAI) for(module of modules) if(module.name === state.modules.queryModule && module.getQuery) {
+    module.getQuery(text)
+    return ""
+  }
+
   for(i of state.modules.order) if(modules[i].process) modules[i].process("output")
   let modifiedText = text
   for(i of state.modules.order) if(modules[i].output) modifiedText = modules[i].output(modifiedText)
