@@ -123,7 +123,7 @@ for(module of modules) if(state[module.name] === undefined) state[module.name] =
 for(module of modules) if(settings[module.name] === undefined && module.settings) settings[module.name] = []
 
 if(!state.modules.initialized){
-  const keyList = ["name","tags","requirements","incompatibles","order","onEnd","init","functions","consume","input","output","context","process","settings","info","version","minVersion"]
+  const keyList = ["name","tags","requirements","incompatibles","order","onEnd","init","functions","consume",,"input","output","context","process","settings","info","version","minVersion"]
   for(module of modules) if(module.version && versionGreater(breakVersion, module.version)) error("There has been a breaking change since module " + module.name + " was developed")
   for(module of modules) if(module.minVersion && versionGreater(module.minVersion, version)) error("Your module version is too out of date for " + module.name + ", please update")
   

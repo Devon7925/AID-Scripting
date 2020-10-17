@@ -54,5 +54,5 @@ Module Example:
 ```
 
 # Extra Notes
-* You can use `state.modules.forceOutput` in consume to force a string to be added to context
+* You can use `state.modules.forceOutput` in consume and getQuery to force a string to be added to context
 * You can use `state.modules.queryAI` in consume to get an output from the AI with the context from `queryContext`. It will be sent to `getQuery`.

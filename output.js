@@ -1,7 +1,9 @@
 const modifier = (text) => {
   if(state.modules.queryAI) for(module of modules) if(module.name === state.modules.queryModule && module.getQuery) {
+    state.modules.forceOutput = ""
     module.getQuery(text)
-    return ""
+    if(state.memory.authorsNote === "") delete state.memory.authorsNote
+    return state.modules.forceOutput
   }
 
   for(i of state.modules.order) if(modules[i].process) modules[i].process("output")
@@ -12,6 +14,7 @@ const modifier = (text) => {
     modifiedText = state.modules.addToOut + modifiedText;
     delete state.modules.addToOut
   }
+  if(state.memory.authorsNote === "") delete state.memory.authorsNote
   return { text: modifiedText }
 }
 

@@ -12,6 +12,7 @@ const modifier = (text) => {
         delete state.modules.addToOut
       }
       if(state.modules.queryAI) state.modules.queryModule = module.name
+      if(state.memory.authorsNote === "") delete state.memory.authorsNote
       return {text: state.modules.forceOutput, stop: !state.modules.queryAI}
     }
   }
@@ -23,6 +24,7 @@ const modifier = (text) => {
     modifiedText = state.modules.addToOut + modifiedText;
     delete state.modules.addToOut
   }
+  if(state.memory.authorsNote === "") delete state.memory.authorsNote
   return { text: modifiedText }
 }
 
