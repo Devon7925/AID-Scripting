@@ -3,7 +3,7 @@ const modifier = (text) => {
     state.modules.forceOutput = ""
     module.getQuery(text)
     if(state.memory.authorsNote === "") delete state.memory.authorsNote
-    return state.modules.forceOutput
+    return {text: state.modules.forceOutput}
   }
 
   for(i of state.modules.order) if(modules[i].process) modules[i].process("output")

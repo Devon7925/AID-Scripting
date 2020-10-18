@@ -1,7 +1,7 @@
 const modifier = (text) => {
   if(state.modules.queryAI) for(module of modules) if(module.name === state.modules.queryModule && module.queryContext) {
     if(state.memory.authorsNote === "") delete state.memory.authorsNote
-    return module.queryContext(text)
+    return {text: module.queryContext(text)}
   }
   
   if(state.modules.contextIsContinue){
@@ -22,7 +22,7 @@ const modifier = (text) => {
     }
     
     for(i of state.modules.order) if(modules[i].input) modifiedText = modules[i].input(modifedText)
-    state.modules.addToOut += modifedText
+    state.modules.addToOut += modifiedText
     
     state.message = ""
     state.memory.context = memory
