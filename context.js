@@ -21,7 +21,7 @@ const modifier = (text) => {
       }
     }
     
-    for(i of state.modules.order) if(modules[i].input) modifiedText = modules[i].input(modifedText)
+    for(i of state.modules.order) if(modules[i].input) modifiedText = modules[i].input(modifiedText)
     state.modules.addToOut += modifiedText
     
     state.message = ""
