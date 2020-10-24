@@ -13,7 +13,7 @@ Module Example:
 ```js
 {
 	name: "Example", // Only required value`
-	tags: ["example"]
+	tags: ["example"],
 	requirements: [ //Will create error in state.message and log if required modules are not included
 		"Example 2",
 		{
