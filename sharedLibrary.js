@@ -165,9 +165,7 @@ if(!state.modules.initialized){
   for(i of state.modules.order) if(modules[i].init) modules[i].init()
 }
 
-if (!state.message){
-  state.message = ""
-}
+if (!state.message) state.message = ""
 state.memory.context = memory
 state.memory.frontMemory = ""
 state.memory.authorsNote = ""

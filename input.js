@@ -32,5 +32,3 @@ const modifier = (text) => {
 
 // Don't modify this part
 modifier(text)
-
-  
