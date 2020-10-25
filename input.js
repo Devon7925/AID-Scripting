@@ -1,4 +1,6 @@
 const modifier = (text) => {
+  state.message = ""
+
   for(i of state.modules.order) if(modules[i].process) modules[i].process("input")
   
   state.modules.forceOutput = ""
